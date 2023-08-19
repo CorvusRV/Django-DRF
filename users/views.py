@@ -33,8 +33,7 @@ class CustomUserAPIView(APIView):
                         sms_active.sms_active = True
                         sms_active.save(update_fields=["sms_active"])
                         user = CustomUser.objects.filter(phone=data['phone']).last()
-                        #return JsonResponse({'error': 'проверка'}, status=200)
-                        token = Token.objects.get_or_create(user=user)  # токен не создается
+                        token = Token.objects.get_or_create(user=user)
                         return JsonResponse({'token': str(token)}, status=200)
                     else:
                         return Response({'error': 'код указан не верно'})
@@ -52,9 +51,13 @@ class CustomUserDetailAPIView(APIView):
     # можно переделать на работу с номером телефона
     def get(self, request, pk):
         """при GET, с указанием номером, выдает данные о пользователе"""
-        pk = CustomUser.objects.get(pk=pk)
-        serializer = CustomUserSerializer(pk)
-        return Response(serializer.data)
+        us = CustomUser.objects.filter(id=pk).exists()
+        if us is True:
+            pk = CustomUser.objects.get(pk=pk)
+            serializer = CustomUserSerializer(pk)
+            return Response(serializer.data)
+        else:
+            return JsonResponse({"status": 404, "reason": "Not found"}, status=404)
 
     def patch(self, request, pk):
         """
