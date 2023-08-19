@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "0085e882-4e9e-4ac9-b0ce-e12e0febe0d9",
+		"name": "HSAPI-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29202986"
+	},
+	"item": [
+		{
+			"name": "Список пользователей",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "phone",
+						"value": "88009996666",
+						"equals": true,
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "zZ888888",
+						"equals": true,
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "phone",
+							"value": "89206518437",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "zZ888888",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://yurichetv.pythonanywhere.com/users/",
+					"protocol": "https",
+					"host": [
+						"yurichetv",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"users",
+						""
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "88009996666",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "zZ888888",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Данные пользователя",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://yurichetv.pythonanywhere.com/users/3/",
+					"protocol": "https",
+					"host": [
+						"yurichetv",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"users",
+						"3",
+						""
+					]
+				},
+				"description": "Можно запросить данные любого пользователя, зарегистрированного в базе, по его id"
+			},
+			"response": []
+		},
+		{
+			"name": "Добавление инвайт кода",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "invite_code",
+							"value": "2$7155",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "3144",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://yurichetv.pythonanywhere.com/users/6/",
+					"protocol": "https",
+					"host": [
+						"yurichetv",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"users",
+						"6",
+						""
+					]
+				},
+				"description": "Для добавления кода необходимо в теле запроса добавить\r\ninvite_code: <value>\r\nдругие параметры изменить нельзя\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Авторизация",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "phone",
+							"value": "99106004343",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "4820",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://yurichetv.pythonanywhere.com/users/",
+					"protocol": "https",
+					"host": [
+						"yurichetv",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"users",
+						""
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "8800998877",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Для авторизации в теле запроса необходимо отправить номер телефона\r\nphone: <value>\r\nВ ответ будет тправлен смс код (на данный момент от приходит в JSON ответе)\r\nВо второй раз в теле запроса необходимо отправить номер телефона и смс код\r\nphone: <value>\r\ncode: <value>\r\nПосле этого в JSON ответе будет выслан токен для авторизации"
+			},
+			"response": []
+		}
+	]
+}

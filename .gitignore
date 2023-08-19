@@ -1,0 +1,6 @@
+db.sqlite3
+equest.http
+.env
+venv
+__pycache__
+.idea
